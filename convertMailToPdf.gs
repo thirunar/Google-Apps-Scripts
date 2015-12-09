@@ -1,4 +1,4 @@
-function saveGmailAsPDF() { 
+function convertMailToPDF() { 
   
   var gmailLabels  = "PDF";  
   var driveFolder  = "Cab bills";
