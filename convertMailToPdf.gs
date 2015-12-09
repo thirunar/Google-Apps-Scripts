@@ -1,7 +1,7 @@
-function convertMailToPDF() { 
+function saveGmailAsPDF() { 
   
   var gmailLabels  = "PDF";  
-  var driveFolder  = "Cab bills";
+  var driveFolder  = "Cab bills temp";
   
   var threads = GmailApp.search("from:receipts.bangalore@uber.com after: 2015/11/02 ", 0, 100);  
   
@@ -16,7 +16,7 @@ function convertMailToPDF() {
     var label = GmailApp.getUserLabelByName(gmailLabels) ?     
         GmailApp.getUserLabelByName(gmailLabels) : GmailApp.createLabel(driveFolder);
     
-    for (var thread=0; t<threads.length; t++) {
+    for (var thread=0; thread<threads.length; thread++) {
       
       threads[thread].removeLabel(label);
       var msgs = threads[thread].getMessages();
@@ -26,11 +26,11 @@ function convertMailToPDF() {
       
       var subject = threads[thread].getFirstMessageSubject();
      
-      var date = threads[t].getLastMessageDate();
+      var date = threads[thread].getLastMessageDate();
       /* Append all the threads in a message in an HTML document */
       for (var index=0; index<msgs.length; index++) {
         
-        var msg = msgs[m];
+        var msg = msgs[index];
         
         html += "From: " + msg.getFrom() + "<br />";  
         html += "To: " + msg.getTo() + "<br />";
